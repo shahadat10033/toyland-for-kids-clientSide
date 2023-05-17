@@ -7,13 +7,15 @@ import { Link } from "react-router-dom";
 
 const MenuBar = () => {
   return (
-    <div className=" position-sticky">
+    <div>
       {["lg"].map((expand) => (
         <Navbar
           key={expand}
           expand={expand}
-          className="mb-3"
-          style={{ backgroundColor: "#FF69B980" }}
+          className=""
+          style={{
+            backgroundColor: "#FF69B980",
+          }}
         >
           <Container fluid>
             <div className="text-white d-flex align-items-center  ">

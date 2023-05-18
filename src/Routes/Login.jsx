@@ -1,12 +1,64 @@
 import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
+import Swal from "sweetalert2";
+import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
-  const { googleSignUp } = useContext(AuthContext);
+  const { auth, googleProvider, emailLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(`login page`, location);
+  const from = location.state?.from?.pathname || "/";
+
   const handleLogin = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const password = form.password.value;
+    const email = form.email.value;
+    console.log(password, email);
+
+    emailLogin(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "success...",
+          text: "Login successfully!",
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: ` <p>${errorMessage}</p>`,
+        });
+      });
+  };
+  const googleSignUp = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        Swal.fire({
+          icon: "success",
+          title: "success...",
+          text: " Google Login successfully!",
+        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: ` <p>${errorMessage}</p>`,
+        });
+      });
   };
 
   return (
@@ -40,7 +92,7 @@ const Login = () => {
                 placeholder="Password"
                 required
               />
-              <Form.Text className="text-white">{}</Form.Text>
+              {/* <Form.Text className="text-white">{}</Form.Text> */}
             </Form.Group>
 
             <button className="btn btn-light" type="submit">

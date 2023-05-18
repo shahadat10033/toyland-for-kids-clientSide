@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const [error, setError] = useState("");
   const { emailRegister, profileUpdate, logOut } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
-    setError("");
+
     const form = e.target;
     const name = form.username.value;
     const image = form.photoURL.value;
@@ -20,13 +20,23 @@ const Register = () => {
         // Signed in
         const user = result.user;
         console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "success...",
+          text: "Registration successfully!",
+        });
 
         logOut();
         profileUpdate(name, image);
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setError(errorMessage);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: ` <p>${errorMessage}</p>`,
+        });
       });
 
     form.reset();
@@ -82,7 +92,8 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
-              <Form.Text className="text-white">{error}</Form.Text>
+
+              {/* <Form.Text className="text-white">{error}</Form.Text> */}
             </Form.Group>
 
             <button className="btn btn-light" type="submit">

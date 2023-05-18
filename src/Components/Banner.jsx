@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 const Banner = () => {
   return (
     <div>
-      <Carousel className="sticky-top ">
+      <Carousel>
         <Carousel.Item>
           <img
             className="d-block w-100"

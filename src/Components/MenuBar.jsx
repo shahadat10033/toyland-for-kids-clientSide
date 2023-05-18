@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../firebase/AuthProvider";
+import { Spinner } from "react-bootstrap";
 
 const MenuBar = () => {
+  const { user, logOut, loader } = useContext(AuthContext);
+  if (loader) {
+    <Spinner animation="border" variant="warning" />;
+  }
   return (
     <div className="sticky-top ">
       {["lg"].map((expand) => (
@@ -69,15 +75,47 @@ const MenuBar = () => {
                   >
                     Blogs
                   </Link>
-                  {/* {user ? (
-                 
-                      <img></img>
-                    
-                  ) : (
-                    <Link>
-                      <button>Log in</button>
-                    </Link>
-                  )} */}
+                  <span className="mt-2">
+                    {user ? (
+                      <span className="ms-5">
+                        <span
+                          className="me-2"
+                          data-tooltip-id="my-tooltip"
+                          data-tooltip-content={user?.displayName}
+                        >
+                          <img
+                            src={user?.photoURL}
+                            alt=""
+                            style={{
+                              width: 40,
+                              height: 40,
+                              borderRadius: 50,
+
+                              border: "2px solid yellow",
+                            }}
+                          />
+                        </span>
+                        <Tooltip id="my-tooltip" />
+                        <button className="btn btn-light " onClick={logOut}>
+                          Log out
+                        </button>
+                      </span>
+                    ) : (
+                      <NavLink
+                        to="/login"
+                        className={({ isActive, isPending }) =>
+                          isPending
+                            ? ""
+                            : isActive
+                            ? " text-decoration-none  text-primary ms-5 btn  btn-warning text-light"
+                            : "ms-5 text-decoration-none  text-light btn btn-light text-dark"
+                        }
+                      >
+                        log in
+                        {/* <span style={{ marginTop: 10 }}>Log in</span> */}
+                      </NavLink>
+                    )}
+                  </span>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

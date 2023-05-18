@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../firebase/AuthProvider";
 
 const Register = () => {
-  const handleRegister = (e) => {};
+  const [error, setError] = useState("");
+  const { emailRegister, profileUpdate, logOut } = useContext(AuthContext);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    setError("");
+    const form = e.target;
+    const name = form.username.value;
+    const image = form.photoURL.value;
+    const password = form.password.value;
+    const email = form.email.value;
+    console.log(name, image, password, email);
+    emailRegister(email, password)
+      .then((result) => {
+        // Signed in
+        const user = result.user;
+        console.log(user);
+
+        logOut();
+        profileUpdate(name, image);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+
+    form.reset();
+  };
 
   return (
     <div className="row d-flex align-items-center ">
@@ -55,7 +82,7 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
-              <Form.Text className="text-white">{}</Form.Text>
+              <Form.Text className="text-white">{error}</Form.Text>
             </Form.Group>
 
             <button className="btn btn-light" type="submit">

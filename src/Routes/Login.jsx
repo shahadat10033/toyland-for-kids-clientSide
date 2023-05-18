@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../firebase/AuthProvider";
 
 const Login = () => {
+  const { googleSignUp } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
   };
-  const googleSignUp = () => {};
+
   return (
     <div className="row d-flex align-items-center ">
       <div className="col-md-6">

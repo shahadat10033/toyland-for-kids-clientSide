@@ -7,9 +7,33 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
 import { Spinner } from "react-bootstrap";
 import { Tooltip } from "react-tooltip";
+import { signOut } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const MenuBar = () => {
-  const { user, logOut, loader } = useContext(AuthContext);
+  const { user, loader, auth, setLoader } = useContext(AuthContext);
+  //   sign out
+  const logOut = () => {
+    setLoader(true);
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        Swal.fire({
+          icon: "success",
+          title: "success...",
+          text: "Log out successfully!",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: ` <p>something gone wrong</p>`,
+        });
+      });
+  };
+
   if (loader) {
     <Spinner animation="border" variant="warning" />;
   }
@@ -58,24 +82,66 @@ const MenuBar = () => {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Link to="/" className="text-decoration-none text-white me-5">
+                  <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? ""
+                        : isActive
+                        ? " text-decoration-none mt-3 text-primary ps-5"
+                        : "ps-5 text-decoration-none mt-3 text-light"
+                    }
+                  >
                     Home
-                  </Link>
-                  <Link to="/" className="text-decoration-none text-white me-5">
+                  </NavLink>
+                  <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? ""
+                        : isActive
+                        ? " text-decoration-none mt-3 text-primary ps-5"
+                        : "ps-5 text-decoration-none mt-3 text-light"
+                    }
+                  >
                     All Toys
-                  </Link>
-                  <Link to="/" className="text-decoration-none text-white me-5">
+                  </NavLink>
+                  <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? ""
+                        : isActive
+                        ? " text-decoration-none mt-3 text-primary ps-5"
+                        : "ps-5 text-decoration-none mt-3 text-light"
+                    }
+                  >
                     My Toys
-                  </Link>
-                  <Link to="/" className="text-decoration-none text-white me-5">
+                  </NavLink>
+                  <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? ""
+                        : isActive
+                        ? " text-decoration-none mt-3 text-primary ps-5"
+                        : "ps-5 text-decoration-none mt-3 text-light"
+                    }
+                  >
                     Add a Toy
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/blogs"
-                    className="text-decoration-none text-white me-5"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? ""
+                        : isActive
+                        ? " text-decoration-none mt-3 text-primary ps-5"
+                        : "ps-5 text-decoration-none mt-3 text-light"
+                    }
                   >
                     Blogs
-                  </Link>
+                  </NavLink>
                   <span className="mt-2">
                     {user ? (
                       <span className="ms-5">
@@ -108,7 +174,7 @@ const MenuBar = () => {
                           isPending
                             ? ""
                             : isActive
-                            ? " text-decoration-none  text-primary ms-5 btn  btn-warning text-light"
+                            ? " text-decoration-none  text-white ms-5 btn  btn-primary text-light"
                             : "ms-5 text-decoration-none  text-light btn btn-light text-dark"
                         }
                       >

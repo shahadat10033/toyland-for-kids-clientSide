@@ -5,7 +5,6 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut,
   updateProfile,
 } from "firebase/auth";
 import app from "./firebase.config";
@@ -29,17 +28,7 @@ const AuthProvider = ({ children }) => {
     setLoader(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  //   sign out
-  const logOut = () => {
-    setLoader(true);
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
-  };
+
   // getUserCurrentState
 
   useEffect(() => {
@@ -72,8 +61,8 @@ const AuthProvider = ({ children }) => {
     user,
     emailRegister,
     setUser,
+    setLoader,
     emailLogin,
-    logOut,
     loader,
   };
   return (

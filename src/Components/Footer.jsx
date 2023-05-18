@@ -92,7 +92,14 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-12 text-center">
               <p>
-                {new Date().getFullYear()} kids Toyland. All rights reserved.
+                {" "}
+                <img
+                  src="toyLogo.webp"
+                  alt=""
+                  style={{ width: 25, height: 25, borderRadius: "50%" }}
+                  className="me-2"
+                ></img>
+                kids Toyland.All rights reserved. {new Date().getFullYear()}
               </p>
             </div>
           </div>

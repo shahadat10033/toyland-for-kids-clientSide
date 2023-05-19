@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../firebase/AuthProvider";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyToy = () => {
   const { user } = useContext(AuthContext);
@@ -15,6 +16,26 @@ const MyToy = () => {
         setMyToy(data);
       });
   }, []);
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/toys/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: "success...",
+            text: " Toy Deleted successfully!",
+          });
+          const remaining = myToy.filter((mt) => mt._id !== id);
+
+          setMyToy(remaining);
+        }
+      });
+  };
 
   return (
     <div>
@@ -61,7 +82,12 @@ const MyToy = () => {
                 </Link>
               </td>
               <td>
-                <button className="btn btn-light">X</button>
+                <button
+                  className="btn btn-light"
+                  onClick={() => handleDelete(toy._id)}
+                >
+                  X
+                </button>
               </td>
             </tr>
           ))}

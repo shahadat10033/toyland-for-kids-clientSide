@@ -1,6 +1,6 @@
 import { Rating } from "@smastrom/react-rating";
 import React from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
 
 const SingleToy = () => {
@@ -13,7 +13,6 @@ const SingleToy = () => {
     sellerName,
     toyName,
     toyPhotoUrl,
-    _id,
   } = useLoaderData();
 
   return (

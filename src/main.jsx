@@ -12,6 +12,7 @@ import ErrorPage from "./Components/ErrorPage";
 import AuthProvider from "./firebase/AuthProvider";
 import AddToy from "./Routes/AddToy";
 import AllToy from "./Routes/AllToy";
+import SingleToy from "./Routes/SingleToy";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,13 @@ const router = createBrowserRouter([
       {
         path: "/allToy",
         element: <AllToy></AllToy>,
+      },
+      {
+        path: "/toy/:id",
+        element: <SingleToy></SingleToy>,
+        loader: ({ params }) => {
+          return fetch(`http://localhost:5000/toys/${params.id}`);
+        },
       },
     ],
   },

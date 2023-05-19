@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import Marquee from "react-fast-marquee";
+import { Link } from "react-router-dom";
 
 const AllToy = () => {
   const [allToy, setAllToy] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/toys")
       .then((res) => res.json())
@@ -11,16 +13,16 @@ const AllToy = () => {
         setAllToy(data);
       });
   }, []);
-
+  console.log(allToy);
   return (
-    <div className="m-3">
+    <div className="">
       <Marquee>
         <h2 style={{ color: "#FF69B4" }} className="text-center">
           All toys are here
         </h2>
       </Marquee>
       <Table hover responsive style={{ backgroundColor: "#FF69B4" }}>
-        <thead className="fw-bold">
+        <thead className="fw-bold ">
           <tr>
             <th>Seller </th>
             <th>Toy Name</th>
@@ -39,7 +41,9 @@ const AllToy = () => {
               <td>{toy.price}</td>
               <td>{toy.quantity}</td>
               <td>
-                <button className="btn btn-light">View Details</button>
+                <Link to={`/toy/${toy._id}`}>
+                  <button className="btn btn-light">View Details</button>
+                </Link>
               </td>
             </tr>
           ))}

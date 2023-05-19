@@ -1,5 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const AddToy = () => {
   const handleAddToy = (e) => {
@@ -37,6 +38,13 @@ const AddToy = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "success...",
+            text: " Toy added successfully!",
+          });
+        }
       });
   };
   return (

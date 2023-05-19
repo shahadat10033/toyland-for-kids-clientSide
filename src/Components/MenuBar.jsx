@@ -95,7 +95,7 @@ const MenuBar = () => {
                     Home
                   </NavLink>
                   <NavLink
-                    to="/"
+                    to="/allToy"
                     className={({ isActive, isPending }) =>
                       isPending
                         ? ""

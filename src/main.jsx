@@ -13,6 +13,7 @@ import AuthProvider from "./firebase/AuthProvider";
 import AddToy from "./Routes/AddToy";
 import AllToy from "./Routes/AllToy";
 import SingleToy from "./Routes/SingleToy";
+import MyToy from "./Routes/MyToy";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/allToy",
         element: <AllToy></AllToy>,
+      },
+      {
+        path: "/myToy",
+        element: <MyToy></MyToy>,
       },
       {
         path: "/toy/:id",

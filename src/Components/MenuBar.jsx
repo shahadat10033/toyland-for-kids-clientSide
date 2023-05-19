@@ -9,6 +9,7 @@ import { Spinner } from "react-bootstrap";
 import { Tooltip } from "react-tooltip";
 import { signOut } from "firebase/auth";
 import Swal from "sweetalert2";
+import "react-tooltip/dist/react-tooltip.css";
 
 const MenuBar = () => {
   const { user, loader, auth, setLoader } = useContext(AuthContext);
@@ -107,7 +108,7 @@ const MenuBar = () => {
                     All Toys
                   </NavLink>
                   <NavLink
-                    to="/"
+                    to="/myToy"
                     className={({ isActive, isPending }) =>
                       isPending
                         ? ""

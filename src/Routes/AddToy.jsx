@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { AuthContext } from "../firebase/AuthProvider";
 
 const AddToy = () => {
+  const { user } = useContext(AuthContext);
   const handleAddToy = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -79,6 +81,7 @@ const AddToy = () => {
               type="text"
               name="sellerName"
               placeholder="Seller Name"
+              defaultValue={user?.displayName}
               required
             />
           </Form.Group>
@@ -87,6 +90,7 @@ const AddToy = () => {
             <Form.Control
               type="Seller Email"
               name="sellerEmail"
+              defaultValue={user?.email}
               placeholder="Enter email"
               required
             />

@@ -10,6 +10,7 @@ import Register from "./Routes/Register";
 import Blogs from "./Routes/Blogs";
 import ErrorPage from "./Components/ErrorPage";
 import AuthProvider from "./firebase/AuthProvider";
+import AddToy from "./Routes/AddToy";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
+      },
+      {
+        path: "/addToy",
+        element: <AddToy></AddToy>,
       },
     ],
   },

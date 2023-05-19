@@ -8,8 +8,8 @@ import "@smastrom/react-rating/style.css";
 const Review = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      delay: 200,
+      duration: 2000,
+      delay: 300,
       easing: "ease-in-out",
       once: true,
     });

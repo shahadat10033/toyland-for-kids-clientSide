@@ -3,7 +3,7 @@ import { Accordion } from "react-bootstrap";
 
 const Family = () => {
   return (
-    <div className="mx-2">
+    <div className="mx-2 mb-5">
       <h1 className="text-center" style={{ color: "#FF69B4" }}>
         Welcome To Our Family
       </h1>

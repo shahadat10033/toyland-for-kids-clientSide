@@ -119,7 +119,7 @@ const MenuBar = () => {
                     My Toys
                   </NavLink>
                   <NavLink
-                    to="/"
+                    to="/addToy"
                     className={({ isActive, isPending }) =>
                       isPending
                         ? ""

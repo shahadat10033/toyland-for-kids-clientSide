@@ -3,9 +3,12 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../Components/useTitle";
 
 const Register = () => {
+  useTitle("Register");
   const { emailRegister, profileUpdate, logOut } = useContext(AuthContext);
+
   const handleRegister = (e) => {
     e.preventDefault();
 

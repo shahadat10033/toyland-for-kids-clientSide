@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { AuthContext } from "../firebase/AuthProvider";
+import useTitle from "../Components/useTitle";
 
 const AddToy = () => {
+  useTitle("AddToy");
   const { user } = useContext(AuthContext);
   const handleAddToy = (e) => {
     e.preventDefault();

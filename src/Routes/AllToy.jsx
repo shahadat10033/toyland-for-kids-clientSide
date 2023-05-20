@@ -4,8 +4,10 @@ import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
+import useTitle from "../Components/useTitle";
 
 const AllToy = () => {
+  useTitle("AllToy");
   const [allToy, setAllToy] = useState([]);
 
   const handleSearch = (e) => {

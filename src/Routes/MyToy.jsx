@@ -3,8 +3,10 @@ import { AuthContext } from "../firebase/AuthProvider";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useTitle from "../Components/useTitle";
 
 const MyToy = () => {
+  useTitle("MyToy");
   const { user } = useContext(AuthContext);
   const [myToy, setMyToy] = useState([]);
 

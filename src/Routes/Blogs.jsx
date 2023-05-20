@@ -1,7 +1,9 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
+import useTitle from "../Components/useTitle";
 
 const Blogs = () => {
+  useTitle("Blogs");
   return (
     <div className="mx-4 mb-4 ">
       <Marquee speed={100}>

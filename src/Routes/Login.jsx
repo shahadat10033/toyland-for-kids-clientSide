@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
 import Swal from "sweetalert2";
 import { signInWithPopup } from "firebase/auth";
+import useTitle from "../Components/useTitle";
 
 const Login = () => {
   const { auth, googleProvider, emailLogin } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
+    useTitle("Login");
     e.preventDefault();
     const form = e.target;
     const password = form.password.value;

@@ -2,8 +2,10 @@ import { Rating } from "@smastrom/react-rating";
 import React from "react";
 import { Card } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../Components/useTitle";
 
 const SingleToy = () => {
+  useTitle("SingleToy");
   const {
     description,
     price,

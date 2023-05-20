@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdatePage = () => {
+  useTitle("UpdatePage");
   const { description, price, quantity, _id } = useLoaderData();
 
   const handleUpdate = (e) => {

@@ -1,13 +1,15 @@
 import { Rating } from "@smastrom/react-rating";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import Swal from "sweetalert2";
+import { AuthContext } from "../firebase/AuthProvider";
 
 const SubCategory = () => {
   const [toy, setToy] = useState([]);
-
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     fetch("http://localhost:5000/subCategory?subCategory=dog")
       .then((res) => res.json())
@@ -25,6 +27,14 @@ const SubCategory = () => {
       .then((data) => {
         console.log(data);
         setToy(data);
+      });
+  };
+  const handleAlert = () => {
+    user ||
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You have to log in first to view details",
       });
   };
 
@@ -70,7 +80,9 @@ const SubCategory = () => {
 
                   <Card.Text>Price: {t.price}$</Card.Text>
                   <Link to={`/toy/${t._id}`}>
-                    <button className="btn btn-light ">View Details</button>
+                    <button className="btn btn-light " onClick={handleAlert}>
+                      View Details
+                    </button>
                   </Link>
                 </Card.Body>
               </Card>
@@ -107,7 +119,9 @@ const SubCategory = () => {
 
                   <Card.Text>Price: {t.price}$</Card.Text>
                   <Link to={`/toy/${t._id}`}>
-                    <button className="btn btn-light ">View Details</button>
+                    <button className="btn btn-light " onClick={handleAlert}>
+                      View Details
+                    </button>
                   </Link>
                 </Card.Body>
               </Card>
@@ -144,7 +158,9 @@ const SubCategory = () => {
 
                   <Card.Text>Price: {t.price}$</Card.Text>
                   <Link to={`/toy/${t._id}`}>
-                    <button className="btn btn-light ">View Details</button>
+                    <button className="btn btn-light " onClick={handleAlert}>
+                      View Details
+                    </button>
                   </Link>
                 </Card.Body>
               </Card>

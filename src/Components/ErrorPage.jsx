@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, useRouteError } from "react-router-dom";
+import useTitle from "./useTitle";
 
 const ErrorPage = () => {
+  useTitle("ErrorPage");
   const { error, status } = useRouteError();
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">

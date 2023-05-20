@@ -11,7 +11,7 @@ const MyToy = () => {
   const [myToy, setMyToy] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myToys?sellerEmail=${user.email}`)
+    fetch(`http://localhost:5000/myToys?sellerEmail=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -39,7 +39,7 @@ const MyToy = () => {
       });
   };
   const handleAscending = () => {
-    fetch(`http://localhost:5000/ascendingToys?sellerEmail=${user.email}`)
+    fetch(`http://localhost:5000/ascendingToys?sellerEmail=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -47,7 +47,7 @@ const MyToy = () => {
       });
   };
   const handleDescending = () => {
-    fetch(`http://localhost:5000/descendingToys?sellerEmail=${user.email}`)
+    fetch(`http://localhost:5000/descendingToys?sellerEmail=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -56,7 +56,7 @@ const MyToy = () => {
   };
 
   return (
-    <div className="overflow-md-scroll ">
+    <div className="overflow-md-scroll " style={{ minHeight: "80vh" }}>
       <h2 style={{ color: "#FF69B4" }} className="text-center">
         MY Toys
       </h2>
@@ -130,5 +130,4 @@ const MyToy = () => {
     </div>
   );
 };
-
 export default MyToy;

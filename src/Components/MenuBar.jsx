@@ -107,30 +107,34 @@ const MenuBar = () => {
                   >
                     All Toys
                   </NavLink>
-                  <NavLink
-                    to="/myToy"
-                    className={({ isActive, isPending }) =>
-                      isPending
-                        ? ""
-                        : isActive
-                        ? " text-decoration-none mt-3 text-primary ps-5"
-                        : "ps-5 text-decoration-none mt-3 text-light"
-                    }
-                  >
-                    My Toys
-                  </NavLink>
-                  <NavLink
-                    to="/addToy"
-                    className={({ isActive, isPending }) =>
-                      isPending
-                        ? ""
-                        : isActive
-                        ? " text-decoration-none mt-3 text-primary ps-5"
-                        : "ps-5 text-decoration-none mt-3 text-light"
-                    }
-                  >
-                    Add a Toy
-                  </NavLink>
+                  {user && (
+                    <NavLink
+                      to="/myToy"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? ""
+                          : isActive
+                          ? " text-decoration-none mt-3 text-primary ps-5"
+                          : "ps-5 text-decoration-none mt-3 text-light"
+                      }
+                    >
+                      My Toys
+                    </NavLink>
+                  )}
+                  {user && (
+                    <NavLink
+                      to="/addToy"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? ""
+                          : isActive
+                          ? " text-decoration-none mt-3 text-primary ps-5"
+                          : "ps-5 text-decoration-none mt-3 text-light"
+                      }
+                    >
+                      Add a Toy
+                    </NavLink>
+                  )}
                   <NavLink
                     to="/blogs"
                     className={({ isActive, isPending }) =>

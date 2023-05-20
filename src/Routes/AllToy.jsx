@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
 import useTitle from "../Components/useTitle";
+import { AuthContext } from "../firebase/AuthProvider";
 
 const AllToy = () => {
   useTitle("AllToy");
   const [allToy, setAllToy] = useState([]);
-
+  const { user } = useContext(AuthContext);
   const handleSearch = (e) => {
     e.preventDefault();
     let name = e.target.toyName.value;
@@ -41,7 +42,14 @@ const AllToy = () => {
         setAllToy(data);
       });
   }, []);
-
+  const handleAlert = () => {
+    user ||
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You have to log in first to view details",
+      });
+  };
   return (
     <div>
       <Form className="mt-5 mx-auto w-50 text-center" onSubmit={handleSearch}>
@@ -87,7 +95,9 @@ const AllToy = () => {
                 <td>{toy.quantity}</td>
                 <td>
                   <Link to={`/toy/${toy._id}`}>
-                    <button className="btn btn-light">View Details</button>
+                    <button className="btn btn-light" onClick={handleAlert}>
+                      View Details
+                    </button>
                   </Link>
                 </td>
               </tr>

@@ -15,6 +15,7 @@ import AllToy from "./Routes/AllToy";
 import SingleToy from "./Routes/SingleToy";
 import MyToy from "./Routes/MyToy";
 import UpdatePage from "./Routes/UpdatePage";
+import ProtectedRoute from "./Routes/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addToy",
-        element: <AddToy></AddToy>,
+        element: (
+          <ProtectedRoute>
+            <AddToy></AddToy>
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/allToy",
@@ -48,7 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/myToy",
-        element: <MyToy></MyToy>,
+        element: (
+          <ProtectedRoute>
+            <MyToy></MyToy>
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/update/:id",
@@ -59,7 +68,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/toy/:id",
-        element: <SingleToy></SingleToy>,
+        element: (
+          <ProtectedRoute>
+            <SingleToy></SingleToy>
+          </ProtectedRoute>
+        ),
         loader: ({ params }) => {
           return fetch(`http://localhost:5000/toys/${params.id}`);
         },

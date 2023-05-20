@@ -7,14 +7,13 @@ import { signInWithPopup } from "firebase/auth";
 import useTitle from "../Components/useTitle";
 
 const Login = () => {
+  useTitle("Login");
   const { auth, googleProvider, emailLogin } = useContext(AuthContext);
-  const navigate = useNavigate();
   const location = useLocation();
-  console.log(`login page`, location);
+  const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
-    useTitle("Login");
     e.preventDefault();
     const form = e.target;
     const password = form.password.value;
@@ -51,6 +50,7 @@ const Login = () => {
           title: "success...",
           text: " Google Login successfully!",
         });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;

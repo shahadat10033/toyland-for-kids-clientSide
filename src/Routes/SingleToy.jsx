@@ -18,8 +18,11 @@ const SingleToy = () => {
   } = useLoaderData();
 
   return (
-    <div>
-      <h2 className="text-center" style={{ color: "#FF69B4" }}>
+    <div style={{ minHeight: "80vh" }}>
+      <h2
+        className="text-center"
+        style={{ color: "#FF69B4", marginTop: "50px" }}
+      >
         Toy Details
       </h2>
       <Card style={{ width: "24rem" }} className="mx-auto my-3 ">

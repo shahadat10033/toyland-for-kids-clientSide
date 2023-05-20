@@ -38,7 +38,7 @@ const MyToy = () => {
   };
 
   return (
-    <div>
+    <div className="overflow-sm-scroll">
       <h2 style={{ color: "#FF69B4" }} className="text-center">
         MY Toys
       </h2>

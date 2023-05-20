@@ -15,7 +15,7 @@ const AllToy = () => {
   }, []);
   console.log(allToy);
   return (
-    <div className="">
+    <div className="overflow-sm-scroll">
       <Marquee>
         <h2 style={{ color: "#FF69B4" }} className="text-center">
           All toys are here

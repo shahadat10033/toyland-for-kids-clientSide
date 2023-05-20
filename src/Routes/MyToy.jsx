@@ -36,13 +36,45 @@ const MyToy = () => {
         }
       });
   };
+  const handleAscending = () => {
+    fetch(`http://localhost:5000/ascendingToys?sellerEmail=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setMyToy(data);
+      });
+  };
+  const handleDescending = () => {
+    fetch(`http://localhost:5000/descendingToys?sellerEmail=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setMyToy(data);
+      });
+  };
 
   return (
-    <div className="overflow-sm-scroll">
+    <div className="overflow-md-scroll ">
       <h2 style={{ color: "#FF69B4" }} className="text-center">
         MY Toys
       </h2>
-      <Table hover style={{ backgroundColor: "#FF69B4" }}>
+      <div className="text-center my-3">
+        <button
+          className="btn text-white me-2 "
+          style={{ backgroundColor: "#FF69B4" }}
+          onClick={handleDescending}
+        >
+          Price in Descending order
+        </button>
+        <button
+          className="btn text-white "
+          style={{ backgroundColor: "#FF69B4" }}
+          onClick={handleAscending}
+        >
+          Price in Ascending order
+        </button>
+      </div>
+      <Table responsive hover style={{ backgroundColor: "#FF69B4" }}>
         <thead className="fw-bold ">
           <tr>
             <th>Toy Picture</th>
@@ -63,7 +95,7 @@ const MyToy = () => {
             <tr key={toy._id} className="text-white">
               <td>
                 <img
-                  src={toy.photoUrl}
+                  src={toy.toyPhotoUrl}
                   alt=""
                   style={{ width: 70, height: 70 }}
                 />

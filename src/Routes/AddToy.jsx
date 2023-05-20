@@ -9,7 +9,8 @@ const AddToy = () => {
     e.preventDefault();
     const form = e.target;
     const toyPhotoUrl = form.toyPhotoUrl.value;
-    const toyName = form.toyName.value;
+    const name = form.toyName.value;
+    const toyName = name.toLowerCase();
     const sellerName = form.sellerName.value;
     const sellerEmail = form.sellerEmail.value;
     const subCategory = form.subCategory.value;

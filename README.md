@@ -2,7 +2,7 @@ KIDS TOYLAND Github Repo
 
 Where you found best toys fot Your kids.
 
--Be with us for best services and create a account here
+- Be with us for best services and create a account here
 
 - Live Site Link
 

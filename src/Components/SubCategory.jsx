@@ -11,7 +11,9 @@ const SubCategory = () => {
   const [toy, setToy] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/subCategory?subCategory=elephant")
+    fetch(
+      "https://toy-land-for-kids-server.vercel.app/subCategory?subCategory=elephant"
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -20,7 +22,7 @@ const SubCategory = () => {
   }, []);
 
   const handleAnimal = (animal) => {
-    const url = `http://localhost:5000/subCategory?subCategory=${animal}`;
+    const url = `https://toy-land-for-kids-server.vercel.app/subCategory?subCategory=${animal}`;
     console.log(url);
     fetch(url)
       .then((res) => res.json())

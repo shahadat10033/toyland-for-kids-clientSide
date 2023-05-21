@@ -19,7 +19,9 @@ const AllToy = () => {
       name = name.replace(/\s/g, "+");
       name = name.toLowerCase();
       console.log(name);
-      fetch(`http://localhost:5000/toyName?toyName=${name}`)
+      fetch(
+        `https://toy-land-for-kids-server.vercel.app/toyName?toyName=${name}`
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -36,7 +38,7 @@ const AllToy = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/toys")
+    fetch("https://toy-land-for-kids-server.vercel.app/toys")
       .then((res) => res.json())
       .then((data) => {
         setAllToy(data);
@@ -57,7 +59,8 @@ const AllToy = () => {
           placeholder="Toy Name"
           type="text"
           name="toyName"
-          className="bg-light text-dark"
+          className="   "
+          style={{ color: "#FF69B4" }}
         />
         <button
           type="submit"
@@ -91,7 +94,7 @@ const AllToy = () => {
                 <td>{toy.sellerName}</td>
                 <td>{toy.toyName}</td>
                 <td>{toy.subCategory}</td>
-                <td>{toy.price}</td>
+                <td>{toy.price}$</td>
                 <td>{toy.quantity}</td>
                 <td>
                   <Link to={`/toy/${toy._id}`}>

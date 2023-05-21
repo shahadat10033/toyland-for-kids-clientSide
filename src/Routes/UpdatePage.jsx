@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import useTitle from "../Components/useTitle";
 
 const UpdatePage = () => {
   useTitle("UpdatePage");
@@ -15,7 +16,7 @@ const UpdatePage = () => {
     const description = form.description.value;
     const updateInfo = { price, quantity, description };
     console.log(updateInfo);
-    fetch(`http://localhost:5000/toys/${_id}`, {
+    fetch(`https://toy-land-for-kids-server.vercel.app/toys/${_id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updateInfo),

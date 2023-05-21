@@ -11,7 +11,9 @@ const MyToy = () => {
   const [myToy, setMyToy] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myToys?sellerEmail=${user?.email}`)
+    fetch(
+      `https://toy-land-for-kids-server.vercel.app/myToys?sellerEmail=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -20,7 +22,7 @@ const MyToy = () => {
   }, []);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/toys/${id}`, {
+    fetch(`https://toy-land-for-kids-server.vercel.app/toys/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -28,18 +30,28 @@ const MyToy = () => {
         console.log(data);
         if (data.deletedCount > 0) {
           Swal.fire({
-            icon: "success",
-            title: "success...",
-            text: " Toy Deleted successfully!",
-          });
-          const remaining = myToy.filter((mt) => mt._id !== id);
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remaining = myToy.filter((mt) => mt._id !== id);
 
-          setMyToy(remaining);
+              setMyToy(remaining);
+            }
+          });
         }
       });
   };
   const handleAscending = () => {
-    fetch(`http://localhost:5000/ascendingToys?sellerEmail=${user?.email}`)
+    fetch(
+      `https://toy-land-for-kids-server.vercel.app/ascendingToys?sellerEmail=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -47,7 +59,9 @@ const MyToy = () => {
       });
   };
   const handleDescending = () => {
-    fetch(`http://localhost:5000/descendingToys?sellerEmail=${user?.email}`)
+    fetch(
+      `https://toy-land-for-kids-server.vercel.app/descendingToys?sellerEmail=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -88,7 +102,7 @@ const MyToy = () => {
             <th>Rating</th>
             <th>Available Quantity</th>
             <th>Description</th>
-            <th></th>
+            <th>Update</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -106,8 +120,8 @@ const MyToy = () => {
               <td>{toy.sellerEmail}</td>
               <td>{toy.toyName}</td>
               <td>{toy.subCategory}</td>
-              <td>{toy.price}</td>
-              <td>{toy.rating}</td>
+              <td>{toy.price}$ </td>
+              <td>{toy.rating} </td>
               <td>{toy.quantity}</td>
               <td>{toy.description}</td>
               <td>

@@ -61,9 +61,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/update/:id",
-        element: <UpdatePage></UpdatePage>,
+        element: (
+          <ProtectedRoute>
+            <UpdatePage></UpdatePage>
+          </ProtectedRoute>
+        ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/toys/${params.id}`);
+          return fetch(
+            `https://toy-land-for-kids-server.vercel.app/toys/${params.id}`
+          );
         },
       },
       {
@@ -74,7 +80,9 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/toys/${params.id}`);
+          return fetch(
+            `https://toy-land-for-kids-server.vercel.app/toys/${params.id}`
+          );
         },
       },
     ],

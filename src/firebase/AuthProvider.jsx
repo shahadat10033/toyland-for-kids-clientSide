@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
   updateProfile,
+  onAuthStateChanged,
 } from "firebase/auth";
 import app from "./firebase.config";
 
@@ -14,12 +14,10 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
   const auth = getAuth(app);
-  // google sign up
-  const googleProvider = new GoogleAuthProvider();
 
-  // email registration
+  //  registration email
 
-  const emailRegister = (email, password) => {
+  const emailRegistration = (email, password) => {
     setLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -28,8 +26,10 @@ const AuthProvider = ({ children }) => {
     setLoader(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  // google sign up
+  const googleProvider = new GoogleAuthProvider();
 
-  // getUserCurrentState
+  // UserStategetting
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
       return unsubscribe();
     };
   }, []);
-  // update user profile
+  //  profile update
 
   const profileUpdate = (name, image) => {
     return updateProfile(auth.currentUser, {
@@ -49,24 +49,25 @@ const AuthProvider = ({ children }) => {
     })
       .then(() => {})
       .catch((error) => {
-        // An error occurred
         // ...
       });
   };
 
-  const authInfo = {
+  const authInformation = {
     profileUpdate,
     googleProvider,
     auth,
     user,
-    emailRegister,
+    emailRegistration,
     setUser,
     setLoader,
     emailLogin,
     loader,
   };
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInformation}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

@@ -11,7 +11,7 @@ const Review = () => {
       duration: 2000,
       delay: 300,
       easing: "ease-in-out",
-      once: true,
+      once: false,
     });
   }, []);
   return (
@@ -22,7 +22,7 @@ const Review = () => {
         <h4 className="text-center">What People Say</h4>
       </div>
       <div className="row">
-        <div className="col-md-6" data-aos="fade-right">
+        <div className="col-md-6" data-aos="fade-right" data-aos-once="false">
           <div className="bg-light border rounded-5 m-5 p-4">
             <Rating style={{ maxWidth: 180 }} value={5} readOnly />
 
@@ -47,7 +47,7 @@ const Review = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-6" data-aos="fade-left">
+        <div className="col-md-6" data-aos="fade-left" data-aos-once="false">
           <div className="bg-light border rounded-5 m-5 p-4">
             <Rating style={{ maxWidth: 180 }} value={5} readOnly />
             <p>

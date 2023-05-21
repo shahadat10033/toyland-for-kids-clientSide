@@ -11,7 +11,7 @@ const SubCategory = () => {
   const [toy, setToy] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/subCategory?subCategory=dog")
+    fetch("http://localhost:5000/subCategory?subCategory=elephant")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -45,12 +45,12 @@ const SubCategory = () => {
       </h2>
       <Tabs>
         <TabList>
-          <Tab onClick={() => handleAnimal("dog")}>Dog</Tab>
           <Tab onClick={() => handleAnimal("elephant")}>Elephant</Tab>
           <Tab onClick={() => handleAnimal("dinosaur")}>Dinosaur</Tab>
+          <Tab onClick={() => handleAnimal("dog")}>Dog</Tab>
         </TabList>
 
-        <TabPanel className="d-flex justify-content-around">
+        <TabPanel className="d-flex justify-content-around overflow-scroll">
           {toy.map((t) => (
             <div key={t._id} className="m-3">
               <Card
@@ -89,7 +89,7 @@ const SubCategory = () => {
             </div>
           ))}
         </TabPanel>
-        <TabPanel className="d-flex justify-content-around">
+        <TabPanel className="d-flex justify-content-around overflow-scroll">
           {toy.map((t) => (
             <div key={t._id} className="m-3">
               <Card
@@ -128,7 +128,7 @@ const SubCategory = () => {
             </div>
           ))}
         </TabPanel>
-        <TabPanel className="d-flex justify-content-around">
+        <TabPanel className="d-flex justify-content-around overflow-scroll">
           {toy.map((t) => (
             <div key={t._id} className="m-3">
               <Card

@@ -94,17 +94,16 @@ const Login = () => {
                 placeholder="Password"
                 required
               />
-              {/* <Form.Text className="text-white">{}</Form.Text> */}
             </Form.Group>
 
             <button className="btn btn-light" type="submit">
               Login
             </button>
             <br />
-            <Form.Text className="text-white">
+            <Form.Text className="text-white ">
               New to this website?
               <Link to="/register">
-                <span className="underline ">Register here</span>
+                <span className="underline ms-2 ">Register </span>
               </Link>
             </Form.Text>
             <br />

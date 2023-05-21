@@ -5,7 +5,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
-import { Spinner } from "react-bootstrap";
 import { Tooltip } from "react-tooltip";
 import { signOut } from "firebase/auth";
 import Swal from "sweetalert2";
@@ -18,7 +17,6 @@ const MenuBar = () => {
     setLoader(true);
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
         Swal.fire({
           icon: "success",
           title: "success...",
@@ -36,7 +34,9 @@ const MenuBar = () => {
   };
 
   if (loader) {
-    <Spinner animation="border" variant="warning" />;
+    <div>
+      <h2 className="text-center fw-bold fs-1">Loading....</h2>
+    </div>;
   }
   return (
     <div className="sticky-top ">
@@ -53,7 +53,6 @@ const MenuBar = () => {
             <div className="text-white d-flex align-items-center  ">
               <span className="me-2">
                 <Link>
-                  {" "}
                   <img
                     src="toyLogo.webp"
                     alt=""
@@ -89,8 +88,8 @@ const MenuBar = () => {
                       isPending
                         ? ""
                         : isActive
-                        ? " text-decoration-none mt-3 text-primary ps-5"
-                        : "ps-5 text-decoration-none mt-3 text-light"
+                        ? " ps-5 text-decoration-none ps-5 mt-3 ps-5 "
+                        : "text-light ps-5 text-decoration-none mt-3 "
                     }
                   >
                     Home
@@ -101,8 +100,8 @@ const MenuBar = () => {
                       isPending
                         ? ""
                         : isActive
-                        ? " text-decoration-none mt-3 text-primary ps-5"
-                        : "ps-5 text-decoration-none mt-3 text-light"
+                        ? "  mt-3 text-decoration-none  ps-5 text-primary"
+                        : " text-light ps-5 text-decoration-none mt-3 "
                     }
                   >
                     All Toys
@@ -114,8 +113,8 @@ const MenuBar = () => {
                         isPending
                           ? ""
                           : isActive
-                          ? " text-decoration-none mt-3 text-primary ps-5"
-                          : "ps-5 text-decoration-none mt-3 text-light"
+                          ? " text-decoration-none text-primary ps-5 mt-3 "
+                          : " mt-3 text-light ps-5 text-decoration-none"
                       }
                     >
                       My Toys
@@ -128,8 +127,8 @@ const MenuBar = () => {
                         isPending
                           ? ""
                           : isActive
-                          ? " text-decoration-none mt-3 text-primary ps-5"
-                          : "ps-5 text-decoration-none mt-3 text-light"
+                          ? " text-decoration-none text-primary ps-5 mt-3 "
+                          : " mt-3 text-light ps-5 text-decoration-none"
                       }
                     >
                       Add a Toy
@@ -141,8 +140,8 @@ const MenuBar = () => {
                       isPending
                         ? ""
                         : isActive
-                        ? " text-decoration-none mt-3 text-primary ps-5"
-                        : "ps-5 text-decoration-none mt-3 text-light"
+                        ? " text-decoration-none text-primary ps-5 mt-3 "
+                        : " mt-3 text-light ps-5 text-decoration-none"
                     }
                   >
                     Blogs
@@ -155,19 +154,19 @@ const MenuBar = () => {
                           data-tooltip-id="my-tooltip"
                           data-tooltip-content={user?.displayName}
                         >
+                          <Tooltip id="my-tooltip" />
                           <img
                             src={user?.photoURL}
                             alt=""
                             style={{
+                              borderRadius: 50,
+                              border: "1px solid #FF69B980",
                               width: 40,
                               height: 40,
-                              borderRadius: 50,
-
-                              border: "2px solid yellow",
                             }}
                           />
                         </span>
-                        <Tooltip id="my-tooltip" />
+
                         <button className="btn btn-light " onClick={logOut}>
                           Log out
                         </button>
@@ -179,12 +178,11 @@ const MenuBar = () => {
                           isPending
                             ? ""
                             : isActive
-                            ? " text-decoration-none  text-white ms-5 btn  btn-primary text-light"
+                            ? " text-decoration-none  text-white ms-5 btn  btn-dark text-light"
                             : "ms-5 text-decoration-none  text-light btn btn-light text-dark"
                         }
                       >
                         log in
-                        {/* <span style={{ marginTop: 10 }}>Log in</span> */}
                       </NavLink>
                     )}
                   </span>

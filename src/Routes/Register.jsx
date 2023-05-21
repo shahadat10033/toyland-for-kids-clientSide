@@ -1,13 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import Swal from "sweetalert2";
+import useTitle from "../Components/useTitle";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
-import Swal from "sweetalert2";
-import useTitle from "../Components/useTitle";
-
 const Register = () => {
   useTitle("Register");
-  const { emailRegister, profileUpdate, logOut } = useContext(AuthContext);
+  const { emailRegistration, profileUpdate, logOut } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -18,7 +17,7 @@ const Register = () => {
     const password = form.password.value;
     const email = form.email.value;
     console.log(name, image, password, email);
-    emailRegister(email, password)
+    emailRegistration(email, password)
       .then((result) => {
         // Signed in
         const user = result.user;
@@ -95,8 +94,6 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
-
-              {/* <Form.Text className="text-white">{error}</Form.Text> */}
             </Form.Group>
 
             <button className="btn btn-light" type="submit">
@@ -106,7 +103,7 @@ const Register = () => {
             <Form.Text className="text-white">
               Already have an account?
               <Link to="/login">
-                <span className="underline ">Login here</span>
+                <span className="underline  ms-1">Login</span>
               </Link>
             </Form.Text>
             <br />

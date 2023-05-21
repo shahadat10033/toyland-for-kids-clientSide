@@ -10,12 +10,11 @@ const Banner = () => {
             src="carousel1.jpg"
             alt="First slide"
           />
-          <Carousel.Caption className="mb-5 pb-5 text-info fw-bold ">
+          <Carousel.Caption className="mb-2 pb-2 text-info fw-bold ">
             <h3>ToyLand: Unleash the Joy of Childhood</h3>
             <p>
               Welcome to ToyLand, your ultimate destination for the best
-              selection of toys, where dreams come true and childhood memories
-              are made.
+              selection of toys, where dreams come true .
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -26,12 +25,11 @@ const Banner = () => {
             alt="Second slide"
           />
 
-          <Carousel.Caption className="mb-5 pb-5 text-info fw-bold">
+          <Carousel.Caption className="mb-2 pb-2 text-info fw-bold">
             <h3>Where Fun Never Ends!</h3>
             <p>
               Explore a world of endless fun and excitement at Toys Galore, your
-              one-stop destination for the most captivating toys and games that
-              ignite imaginations and create lifelong memories.
+              one-stop destination for the most captivating toys .
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -42,12 +40,11 @@ const Banner = () => {
             alt="Third slide"
           />
 
-          <Carousel.Caption className="mb-5 pb-5 text-info fw-bold">
+          <Carousel.Caption className="mb-2 pb-2 text-info fw-bold">
             <h3>Where Imagination Knows No Bounds!</h3>
             <p>
               Extraordinary adventures come to life through a captivating
-              collection of toys, empowering children to dream, create, and
-              explore boundless possibilities.
+              collection of toys, empowering children to dream.
             </p>
           </Carousel.Caption>
         </Carousel.Item>
